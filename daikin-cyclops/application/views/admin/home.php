@@ -2,6 +2,28 @@
 <html lang="en">
     <head>
         <?php $this->load->view("admin/_partials/head.php") ?>
+        <style>
+            .branding {
+            position: absolute;
+            display: flex;
+            top: 30%;
+            left: 40%;
+            align-items: center;
+            flex-direction: column; /* susun vertikal */
+            gap: 0px;
+            font-weight: bold;
+            font-size: 24px;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 12px;
+            color:rgb(43, 167, 208);
+        }
+
+        .logo-daikin {
+            height: 75px;
+            width: auto;
+        }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <?php $this->load->view("admin/_partials/navbar.php") ?>
@@ -11,10 +33,10 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">SELAMAT DATANG DI DAIKIN CYCLOPS</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Cycle Loading Part System</li>
-                        </ol>
+                        <div class="branding">
+                            <img src="<?= base_url('assets/img/daikin_login_v2.png') ?>" alt="Daikin Logo" class="logo-daikin" />
+                            <span class="branding-text">CYCLOPS (Cycle Loading Part System)</span>
+                        </div>
                     </div>
                 </main>
                 <?php $this->load->view("admin/_partials/footer.php") ?>

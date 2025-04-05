@@ -1,6 +1,6 @@
 <style>
     .bg-custom-color {
-        background-color:rgb(193, 239, 255); /* Warna oranye dengan kodergb(135, 228, 242) */
+        background: linear-gradient(135deg,rgb(179, 226, 245),rgb(79, 195, 249)); /* warna biru gradasi */
     }
 
     .color-font {
@@ -24,7 +24,7 @@
                 </a>
                 <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"></div>
-                    Sample menu 1
+                    Purchase Order
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -36,11 +36,16 @@
                     <div class="sb-nav-link-icon"></div>
                     Data Penyedia (Kontrak)
                 </a> -->
-                <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"></div>
-                    Sample Menu 2
+                    Inventory Stock
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link color-font" href="<?php echo site_url('admin/cuti') ?>">Sample Page 2</a>
+                    </nav>
+                </div>
                 <!-- <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link color-font" href="<?php echo site_url('admin/progres') ?>">Laporan Prestasi Pekerjaan</a>
