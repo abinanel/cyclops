@@ -39,12 +39,13 @@ class Auth_model extends CI_Model
 
 		// bikin session
 		$this->session->set_userdata([
-			self::SESSION_KEY => $user->id
-			//'bidang_id' => $user->bidang_id
+			self::SESSION_KEY => $user->id,
+			'department_id' => $user->department_id
 		]);
 		$this->_update_last_login($user->id);
 
-		return $this->session->has_userdata(self::SESSION_KEY);
+		// Kembalikan data user, bukan boolean
+		return $user;
 	}
 
 	public function current_user()

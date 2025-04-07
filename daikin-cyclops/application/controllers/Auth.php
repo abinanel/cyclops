@@ -22,20 +22,22 @@ class Auth extends CI_Controller
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 
-		if($this->auth_model->login($username, $password)){
-			// Set session data for logged-in user
-            $loggedInUserData = array(
-                'username' => $username, // Assuming you store the username in session
-                // Add more user info if needed
-            );
-            $this->session->set_userdata('logged_in_user', $loggedInUserData);
+		$user = $this->auth_model->login($username, $password);
 
+		if ($user) {
+			// Ambil data user id, username dan department_id dari user
+			$loggedInUserData = array(
+				'user_id' => $user->id,
+				'username' => $user->username,
+				'department_id' => $user->department_id
+			);
+			$this->session->set_userdata('logged_in_user', $loggedInUserData);
+		
 			redirect('admin');
 		} else {
-			$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
+			$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan password benar!');
+			redirect('login'); // atau halaman login kamu
 		}
-
-		$this->load->view('login_form');
 	}
 
 	public function logout()
