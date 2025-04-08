@@ -27,8 +27,9 @@ class Auth extends CI_Controller
 		if ($user) {
 			// Ambil data user id, username dan department_id dari user
 			$loggedInUserData = array(
-				'user_id' => $user->id,
+				'user_id' => $user->user_id,
 				'username' => $user->username,
+				'role' => $user->role,
 				'department_id' => $user->department_id
 			);
 			$this->session->set_userdata('logged_in_user', $loggedInUserData);

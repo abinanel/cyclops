@@ -2,7 +2,7 @@
 
 class Auth_model extends CI_Model
 {
-	private $_table = "app_user";
+	private $_table = "users";
 	const SESSION_KEY = 'user_id';
 
 	public function rules()
@@ -38,11 +38,15 @@ class Auth_model extends CI_Model
 		}
 
 		// bikin session
+		// $this->session->set_userdata([
+		// 	self::SESSION_KEY => $user->id,
+		// 	'department_id' => $user->department_id
+		// ]);
 		$this->session->set_userdata([
-			self::SESSION_KEY => $user->id,
+			self::SESSION_KEY => $user->user_id,
+			'role' => $user->role,
 			'department_id' => $user->department_id
 		]);
-		$this->_update_last_login($user->id);
 
 		// Kembalikan data user, bukan boolean
 		return $user;
@@ -55,7 +59,7 @@ class Auth_model extends CI_Model
 		}
 
 		$user_id = $this->session->userdata(self::SESSION_KEY);
-		$query = $this->db->get_where($this->_table, ['id' => $user_id]);
+		$query = $this->db->get_where($this->_table, ['user_id' => $user_id]);
 		return $query->row();
 	}
 
@@ -65,12 +69,12 @@ class Auth_model extends CI_Model
 		return !$this->session->has_userdata(self::SESSION_KEY);
 	}
 
-	private function _update_last_login($id)
-	{
-		$data = [
-			'last_login' => date("Y-m-d H:i:s"),
-		];
+	// private function _update_last_login($id)
+	// {
+	// 	$data = [
+	// 		'last_login' => date("Y-m-d H:i:s"),
+	// 	];
 
-		return $this->db->update($this->_table, $data, ['id' => $id]);
-	}
+	// 	return $this->db->update($this->_table, $data, ['id' => $id]);
+	// }
 }

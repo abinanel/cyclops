@@ -21,7 +21,7 @@
                 <?php
                     // Ambil informasi pengguna yang sedang login dari sesi
                     $loggedInUser = $this->session->userdata('logged_in_user');
-                    $departmentId = isset($loggedInUser['department_id']) ? $loggedInUser['department_id'] : null;
+                    $departmentId = isset($loggedInUser['department_id']) ? $loggedInUser['department_id'] : $loggedInUser['role'];
                 ?>
 
                 <div class="sb-sidenav-menu-heading">MENU</div>
@@ -29,7 +29,7 @@
                     <div class="sb-nav-link-icon"></div>
                     Home
                 </a>
-                <?php if ($departmentId == '2'): ?>
+                <?php if ($departmentId == '5'): ?>
                     <!-- Menu khusus untuk departemen A -->
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"></div>
@@ -61,13 +61,13 @@
                             <a class="nav-link color-font" href="<?php echo site_url('admin/cuti') ?>">Sample Page 2</a>
                         </nav>
                     </div>
-                <?php elseif ($departmentId == '3'): ?>
+                <?php elseif ($departmentId == '6'): ?>
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsA" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"></div>
                         Approval Purchase Order
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                <?php elseif ($departmentId == '4'): ?>
+                <?php elseif ($departmentId == 'supplier'): ?>
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsB" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"></div>
                         Transaction Incoming
