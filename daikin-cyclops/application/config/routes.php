@@ -54,5 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth/login';
-$route['admin'] = 'admin/home';
-$route['admin/cuti'] = 'admin/cuti';
+$route['admin'] = 'admin/Home';
+$route['admin/cuti'] = 'admin/Cuti';
+$route['admin/purchase-requests'] = 'admin/PurchaseRequests';

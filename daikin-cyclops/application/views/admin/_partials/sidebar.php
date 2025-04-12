@@ -31,16 +31,10 @@
                 </a>
                 <?php if ($departmentId == '5'): ?>
                     <!-- Menu khusus untuk departemen A -->
-                    <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a class="nav-link color-font" href="<?php echo site_url('admin/purchase-requests') ?>">
                         <div class="sb-nav-link-icon"></div>
-                        Purchase Order
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        Purchase Requests
                     </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link color-font" href="<?php echo site_url('admin/cuti') ?>">Sample Page 1</a>
-                        </nav>
-                    </div>
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"></div>
                         Receiving Order
@@ -48,7 +42,7 @@
                     </a>
                     <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link color-font" href="<?php echo site_url('admin/cuti') ?>">Sample Page 2</a>
+                            <a class="nav-link color-font" href="<?php echo site_url('admin/purchase-requests') ?>">Sample Page 2</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapsePages">
