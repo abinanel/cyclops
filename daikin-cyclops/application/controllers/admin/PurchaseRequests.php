@@ -189,4 +189,13 @@ class PurchaseRequests extends CI_Controller {
         echo json_encode(['status' => true, 'message' => 'Data berhasil diperbarui.']);
     }
 
+    public function get_list_not_in_draft() {
+		//Panggil metode get_list_by_user_id dari model Purchase_requests_model
+		$purchase_requests = $this->Purchase_requests_model->get_list_not_in_draft();
+
+		// Kirimkan data sebagai JSON
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($purchase_requests));
+	}
 }

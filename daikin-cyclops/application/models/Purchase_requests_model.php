@@ -10,6 +10,13 @@ class Purchase_requests_model extends CI_Model
         return $query->result(); // return berupa array objek
     }
 
+    public function get_list_not_in_draft() 
+    {
+        $this->db->where('status !=', 'draft');
+        $query = $this->db->get('purchase_requests');
+        return $query->result(); // return berupa array objek
+    }
+
     public function get_list_by_user_id($user_id) 
     {
         $this->db->where('created_by', $user_id);

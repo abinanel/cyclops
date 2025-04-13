@@ -56,10 +56,9 @@
                         </nav>
                     </div>
                 <?php elseif ($departmentId == '6'): ?>
-                    <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsA" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a class="nav-link color-font" href="<?php echo site_url('admin/approval-purchase-request/list') ?>">
                         <div class="sb-nav-link-icon"></div>
-                        Approval Purchase Order
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        Approval Purchase Requests
                     </a>
                 <?php elseif ($departmentId == 'supplier'): ?>
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsB" aria-expanded="false" aria-controls="collapseLayouts">

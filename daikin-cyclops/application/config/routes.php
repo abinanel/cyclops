@@ -57,3 +57,4 @@ $route['login'] = 'auth/login';
 $route['admin'] = 'admin/Home';
 $route['admin/cuti'] = 'admin/Cuti';
 $route['admin/purchase-requests'] = 'admin/PurchaseRequests';
+$route['admin/approval-purchase-request/list'] = 'admin/ApprovalPurchaseRequests';
