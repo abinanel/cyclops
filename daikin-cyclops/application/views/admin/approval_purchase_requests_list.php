@@ -116,6 +116,11 @@
                         order: [[0, 'desc']] // ⬅️ kolom ke-0 (pr_id), descending
                     });
                 }
+
+                $(document).on('click', '.editBtn', function() {
+                    var id = $(this).data('id'); // mengambil ID dari data-id attribute
+                    window.location.href = '<?php echo site_url("admin/approval-purchase-request/form"); ?>/' + id;
+                });
             });
         </script>
     </body>
