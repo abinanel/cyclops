@@ -1,6 +1,6 @@
 # cyclops
 # cara menjalankan aplikasi cyclops
-1. download dan install xampp
+1. download dan install xampp (versi PHP yg 8.0.x)
 2. bukan xampp, start Apache dan start mySQL
 3. buka database editor (misal dbeaver), buat koneksi ke mySQL localhost sendiri, lalu buat database dengan nama "daikin"
 4. restore file dump-daikin-202504090010.sql dari git, ke database tersebut

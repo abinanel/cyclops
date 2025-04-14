@@ -50,12 +50,9 @@ class PurchaseRequests extends CI_Controller {
         $user_id = $this->session->userdata('user_id');
 
 		// Ambil nilai dari input
-        //$pr_id = $this->input->post('pr-id');
         $status = $this->input->post('status');
         $statusNote = $this->input->post('status-note');
         $items = $this->input->post('items');
-        // Log data $items untuk memeriksa apa yang terkirim
-        log_message('debug', 'Received Items: ' . print_r($items, true));
 
         date_default_timezone_set('Asia/Jakarta'); // Set timezone ke Jakarta
     
@@ -67,7 +64,6 @@ class PurchaseRequests extends CI_Controller {
             'status_note'  => $statusNote
         ];
         $pr_id = $this->Purchase_requests_model->insert($prData);
-        log_message('debug', 'PR ID: ' . $pr_id);
     
         // Simpan item-itemnya
         $itemData = [];
@@ -82,7 +78,7 @@ class PurchaseRequests extends CI_Controller {
         }
         $this->Purchase_requests_items_model->insert($itemData);
     
-        echo json_encode(['status' => true, 'message' => 'Data berhasil disimpan.']);
+        echo json_encode(['status' => true, 'message' => 'Data saved successfully']);
 	}
 
     public function delete() {
@@ -138,9 +134,6 @@ class PurchaseRequests extends CI_Controller {
         $statusNote = $this->input->post('status-note');
         $items = $this->input->post('items');
     
-        log_message('debug', 'Updating PR ID: ' . $pr_id);
-        log_message('debug', 'Items: ' . print_r($items, true));
-    
         // Update PR utama
         $prData = [
             'created_by' => $user_id,
@@ -186,7 +179,7 @@ class PurchaseRequests extends CI_Controller {
             $this->Purchase_requests_items_model->delete_by_ids($itemsToDelete);
         }
     
-        echo json_encode(['status' => true, 'message' => 'Data berhasil diperbarui.']);
+        echo json_encode(['status' => true, 'message' => 'Data updated successfully']);
     }
 
     public function get_list_not_in_draft() {

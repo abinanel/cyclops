@@ -94,13 +94,23 @@
                                     <div class="col-md-8">
                                         <div class="mb-3">
                                             <label for="status-note" class="form-label">Status Note</label>
-                                            <textarea class="form-control" id="status-note" name="status-note"><?php echo isset($pr->status_note) ? $pr->status_note : ''; ?></textarea>
+                                            <textarea 
+                                                class="form-control <?php echo ($pr->status == 'approved' || $pr->status == 'rejected') ? 'bg-gray' : ''; ?>" 
+                                                id="status-note" 
+                                                name="status-note"
+                                                <?php echo ($pr->status == 'approved' || $pr->status == 'rejected') ? 'readonly' : ''; ?>
+                                            ><?php echo isset($pr->status_note) ? $pr->status_note : ''; ?></textarea>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="text-center d-flex justify-content-center gap-3">
-                                        <button type="button" class="btn btn-primary flex-fill" style="max-width: 100px;">Approve</button>
-                                        <button type="button" class="btn btn-danger flex-fill" style="max-width: 100px;">Reject</button>
+                                        <?php if ($pr->status == 'submitted'): ?>
+                                            <button type="button" class="btn btn-primary flex-fill approveBtn" style="max-width: 100px;">Approve</button>
+                                            <button type="button" class="btn btn-danger flex-fill rejectBtn" style="max-width: 100px;">Reject</button>
+                                            <button type="button" class="btn btn-secondary flex-fill cancelBtn" style="max-width: 100px;">Cancel</button>
+                                        <?php elseif ($pr->status == 'approved' || $pr->status == 'rejected'): ?>
+                                            <button type="button" class="btn btn-primary flex-fill cancelBtn" style="max-width: 100px;">Back</button>
+                                        <?php endif; ?>
                                     </div>
                                     <br>
                                     <br>
@@ -177,6 +187,77 @@
             $(document).ready(function() {
                 //Function yang dipanggil akan terload saat awal page
 
+                $(document).on('click', '.cancelBtn', function() {
+                    window.location.href = "<?php echo site_url('admin/approval-purchase-request/list'); ?>";
+                });
+
+                $(document).on('click', '.approveBtn', function(e) {
+                    e.preventDefault();
+                    $('#loadingModal').modal('show');
+
+                    var formData = $(this).closest('form').serialize(); // FIXED
+                    console.log(formData);
+                    console.log('tes');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo site_url('admin/ApprovalPurchaseRequests/approve'); ?>',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            $('#infoModal .modal-body').html(response.message);
+                            $('#infoModal').modal('show');
+
+                            $('#infoModal').on('hidden.bs.modal', function () {
+                                window.location.href = "<?php echo site_url('admin/approval-purchase-request/list'); ?>";
+                            });
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            var error = jqXHR.responseJSON && jqXHR.responseJSON.error ? jqXHR.responseJSON.error : 'An error occurred';
+                            $('#infoModal .modal-body').html('Error: ' + error);
+                            $('#infoModal').modal('show');
+                        }
+                    }).always(function() {
+                        setTimeout(function() {
+                            $('#loadingModal').modal('hide');
+                        }, 500);
+                    });
+                });
+
+                $(document).on('click', '.rejectBtn', function(e) {
+                    e.preventDefault();
+                    $('#loadingModal').modal('show');
+
+                    var formData = $(this).closest('form').serialize(); // FIXED
+                    console.log(formData);
+                    console.log('tes');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo site_url('admin/ApprovalPurchaseRequests/reject'); ?>',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            $('#infoModal .modal-body').html(response.message);
+                            $('#infoModal').modal('show');
+
+                            $('#infoModal').on('hidden.bs.modal', function () {
+                                window.location.href = "<?php echo site_url('admin/approval-purchase-request/list'); ?>";
+                            });
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            var error = jqXHR.responseJSON && jqXHR.responseJSON.error ? jqXHR.responseJSON.error : 'An error occurred';
+                            $('#infoModal .modal-body').html('Error: ' + error);
+                            $('#infoModal').modal('show');
+                        }
+                    }).always(function() {
+                        setTimeout(function() {
+                            $('#loadingModal').modal('hide');
+                        }, 500);
+                    });
+                });
             });
         </script>
     </body>

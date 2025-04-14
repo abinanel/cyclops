@@ -52,7 +52,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="status-note" class="form-label">Status Note</label>
-                                                <textarea class="form-control" id="status-note" name="status-note"></textarea>
+                                                <textarea class="form-control bg-gray" id="status-note" name="status-note" readonly></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -426,6 +426,31 @@
 
                             $('#status').val(dataLists.status);
                             $('#status-note').val(dataLists.status_note);
+
+                            // Tambahkan logic readonly jika status == 'approved'
+                            const isApproved = dataLists.status === 'approved';
+                            console.log(dataLists.status);
+                            if (isApproved) {
+                                const statusSelect = $('#status');
+                                const statusValue = dataLists.status;
+                                if (statusSelect.find(`option[value="${statusValue}"]`).length === 0) {
+                                    statusSelect.append(`<option value="${statusValue}">${statusValue}</option>`);
+                                }
+                                statusSelect.val(statusValue);
+
+                                // Disable all input and select elements using jQuery
+                                $('#itemsContainer input, #itemsContainer select').prop('disabled', true).addClass('bg-gray');
+
+                                // Sembunyikan tombol close dan tombol addInputBtn untuk semua row
+                                $('#itemsContainer .add-btn-wrapper button').hide();  // Sembunyikan tombol close di semua row
+                                $('#addInputBtn').hide();  // Sembunyikan tombol addInputBtn jika ada
+
+                                // Jika tombol close di dalam setiap row di-add melalui cloning, pastikan mereka tersembunyi juga
+                                itemsContainer.querySelectorAll(".add-btn-wrapper button").forEach(btn => {
+                                    btn.style.display = "none"; // Sembunyikan tombol close di setiap row
+                                });
+                            }
+
                         },
                         error: function() {
                             alert('Error fetching data.');
