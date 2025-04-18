@@ -35,16 +35,10 @@
                         <div class="sb-nav-link-icon"></div>
                         Purchase Requests
                     </a>
-                    <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapsePages">
+                    <a class="nav-link color-font" href="<?php echo site_url('admin/receive-orders/list') ?>">
                         <div class="sb-nav-link-icon"></div>
-                        Receiving Order
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        Receiving Split Purchase Orders
                     </a>
-                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link color-font" href="<?php echo site_url('admin/purchase-requests') ?>">Sample Page 2</a>
-                        </nav>
-                    </div>
                     <a class="nav-link collapsed color-font" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"></div>
                         Inventory Stock

@@ -59,3 +59,4 @@ $route['admin/cuti'] = 'admin/Cuti';
 $route['admin/purchase-requests'] = 'admin/PurchaseRequests';
 $route['admin/approval-purchase-request/list'] = 'admin/ApprovalPurchaseRequests';
 $route['admin/approval-purchase-request/form/(:num)'] = 'admin/ApprovalPurchaseRequests/approveForm/$1';
+$route['admin/receive-orders/list'] = 'admin/ReceiveOrders';
